@@ -123,6 +123,7 @@ if __name__ == "__main__":
             # use PIL, to be consistent with evaluation
             img = read_image(path, format="BGR")
             start_time = time.time()
+            # 내용확인
             predictions, visualized_output = demo.run_on_image(img)
             logger.info(
                 "{}: {} in {:.2f}s".format(

@@ -155,6 +155,7 @@ class VisualizationDemo(object):
         # stuff_colors = coco_stuff_colors + ade20k_stuff_colors
         # thing_classes = user_classes + coco_thing_classes + ade20k_thing_classes + lvis_classes
         # thing_colors = user_colors + coco_thing_colors + ade20k_thing_colors + lvis_colors
+        # 아래 내용 수정 #여기서 사용할 클래스 가져옴
         user_classes = open("./maft/data/datasets/lvis_1203_with_prompt_eng.txt", 'r').read().splitlines()
         user_classes = [x[x.find(':')+1:] for x in user_classes]
 
@@ -189,9 +190,11 @@ class VisualizationDemo(object):
             vis_output (VisImage): the visualized image output.
         """
         vis_output = None
+        # 결과 출력
         predictions = self.predictor(image)
         # Convert image from OpenCV BGR format to Matplotlib RGB format.
         image = image[:, :, ::-1]
+        #모델 셋팅
         visualizer = OpenVocabVisualizer(image, self.metadata, instance_mode=self.instance_mode)
         # visualizer = OpenVocabVisualizer(image, self.metadata, instance_mode=self.instance_mode)
         if "panoptic_seg" in predictions:
